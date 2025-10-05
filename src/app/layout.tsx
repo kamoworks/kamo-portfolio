@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ClientBody from "./ClientBody";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Kamo Oliphant | Strategic Content Marketing Specialist",
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ClientBody>{children}</ClientBody>
+      <ClientBody>
+        {children}
+        <SpeedInsights />
+      </ClientBody>
     </html>
   );
 }
