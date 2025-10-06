@@ -7,21 +7,18 @@ import {
   X,
   BarChart3,
   Mail,
-  Sparkles,
   TrendingUp,
-  Users,
   CheckCircle2,
   ExternalLink,
   ChevronRight,
   Star,
   Calendar,
-  Linkedin,
-  MessageSquare,
   Award,
   Target,
   Zap,
   Shield
 } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import Link from "next/link";
 import { caseStudies } from "@/data/caseStudies";
 import { testimonials } from "@/data/testimonials";
@@ -30,7 +27,6 @@ import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-white">
@@ -94,9 +90,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-white">
-        {/* Subtle Background */}
+        {/* Background Gradients */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-brand-gray-50 to-transparent opacity-60"></div>
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-brand-green/5 via-brand-gray-50 to-transparent opacity-60" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl hidden md:block" />
+          <div className="absolute top-1/2 -left-40 w-80 h-80 bg-brand-navy/5 rounded-full blur-3xl hidden md:block" />
         </div>
 
         <div className="max-w-7xl mx-auto">
@@ -104,61 +102,55 @@ export default function Home() {
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.95] tracking-tight">
               <span className="block text-brand-navy">Your Biggest</span>
               <span className="block text-brand-navy">Competitor Just</span>
-              <span className="block text-brand-navy">Hired a <span className="text-brand-green">Content Expert</span></span>
+              <span className="block text-brand-navy">Hired a <span className="gradient-text">Content Expert</span></span>
             </h1>
 
             <p className="text-2xl md:text-3xl text-brand-navy-light mb-12 max-w-3xl font-semibold leading-tight">
               They're dominating search and stealing your market share. I help ambitious leaders reclaim their competitive edge.
             </p>
 
-            <div className="flex flex-col items-start gap-4 mb-16">
+            <div className="flex flex-col items-start gap-4">
               <Link
                 href="https://calendly.com/kamooliphant/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-brand-green text-white px-12 py-6 rounded-full hover:bg-brand-green-dark transition-all hover:scale-105 text-2xl font-black shadow-xl hover:shadow-2xl"
+                className="group relative inline-flex items-center gap-3 bg-brand-green text-white px-12 py-6 rounded-full hover:bg-brand-green-dark transition-all hover:scale-105 text-2xl font-black shadow-xl hover:shadow-2xl glow-on-hover overflow-hidden"
               >
-                Schedule Strategy Call
-                <ArrowRight size={28} />
+                <span className="relative z-10">Schedule Strategy Call</span>
+                <ArrowRight size={28} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
               <Link
                 href="#work"
-                className="text-brand-navy-light hover:text-brand-navy text-lg font-bold underline underline-offset-4 decoration-2"
+                className="group text-brand-navy-light hover:text-brand-navy text-lg font-bold underline underline-offset-4 decoration-2 transition-all hover:underline-offset-8"
               >
-                See case studies →
+                <span className="inline-flex items-center gap-2">
+                  See case studies
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </span>
               </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { value: "1,067%", label: "Traffic Growth", sublabel: "Organic" },
-                { value: "$20K+", label: "Leads Generated", sublabel: "Qualified" },
-                { value: "97%", label: "Deliverability", sublabel: "Email" },
-                { value: "5.0★", label: "Client Rating", sublabel: "Average" }
-              ].map((stat, i) => (
-                <div key={i} className="text-center md:text-left">
-                  <div className="text-5xl md:text-6xl font-black text-brand-navy mb-2">{stat.value}</div>
-                  <div className="text-base font-bold text-brand-navy-light">{stat.label}</div>
-                  <div className="text-sm text-brand-gray-600">{stat.sublabel}</div>
-                </div>
-              ))}
             </div>
 
             {/* Trust Indicators */}
             <div className="mt-16 pt-8 border-t-2 border-brand-gray-200">
               <div className="flex flex-wrap items-center gap-8 text-base text-brand-navy-light">
-                <div className="flex items-center gap-2">
-                  <Shield size={20} className="text-brand-green" />
-                  <span className="font-semibold">100% On-Time Delivery</span>
+                <div className="flex items-center gap-2 group cursor-default hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center group-hover:bg-brand-green/20 transition-colors">
+                    <Shield size={20} className="text-brand-green group-hover:scale-110 transition-transform" />
+                  </div>
+                  <span className="font-semibold group-hover:text-brand-navy transition-colors">100% On-Time Delivery</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Target size={20} className="text-brand-green" />
-                  <span className="font-semibold">80%+ Repeat Clients</span>
+                <div className="flex items-center gap-2 group cursor-default hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center group-hover:bg-brand-green/20 transition-colors">
+                    <Target size={20} className="text-brand-green group-hover:scale-110 transition-transform" />
+                  </div>
+                  <span className="font-semibold group-hover:text-brand-navy transition-colors">80%+ Repeat Clients</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Zap size={20} className="text-brand-green" />
-                  <span className="font-semibold">24hr Response Time</span>
+                <div className="flex items-center gap-2 group cursor-default hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center group-hover:bg-brand-green/20 transition-colors">
+                    <Zap size={20} className="text-brand-green group-hover:scale-110 transition-transform" />
+                  </div>
+                  <span className="font-semibold group-hover:text-brand-navy transition-colors">24hr Response Time</span>
                 </div>
               </div>
             </div>
@@ -167,203 +159,460 @@ export default function Home() {
       </section>
 
       {/* Case Studies Section */}
-      <section id="work" className="py-20 px-6 bg-brand-gray-50">
+      <section id="work" className="py-20 px-6 bg-gradient-to-br from-brand-gray-50 via-white to-brand-gray-50">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="mb-16 text-center">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy">Proven Results That Speak</h2>
-            <p className="text-xl md:text-2xl text-brand-gray-600 max-w-3xl mx-auto font-medium">Real campaigns. Real results. Real revenue.</p>
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20 hover:scale-105 transition-transform cursor-default">
+                Client Success Stories
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy leading-tight">
+              Proven Results That Speak
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light max-w-3xl mx-auto font-semibold leading-relaxed">
+              Real campaigns. Real results. Real revenue.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {caseStudies.map((study) => (
+          {/* Case Studies Grid */}
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            {caseStudies.map((study, index) => (
               <div
                 key={study.id}
-                className="group bg-white rounded-2xl overflow-hidden border-2 border-brand-gray-200 hover:border-brand-green hover:shadow-2xl transition-all duration-300"
+                className="group bg-white rounded-2xl overflow-hidden border-2 border-brand-gray-200 hover:border-brand-green hover:shadow-2xl transition-all duration-300 flex flex-col md:hover:scale-[1.02]"
               >
-                {/* Header */}
-                <div className="p-8 border-b-2 border-brand-gray-100">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="inline-block px-4 py-2 bg-brand-gray-100 text-brand-navy rounded-lg text-sm font-bold uppercase tracking-wide">
+                {/* Header with Gradient Accent - Fixed Height */}
+                <div className="relative p-6 lg:p-8 border-b-2 border-brand-gray-100 bg-gradient-to-br from-white to-brand-gray-50/30">
+                  {/* Top Badge Row */}
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-0 mb-6">
+                    <span className="inline-block px-4 py-2 bg-brand-green/10 text-brand-green rounded-lg text-sm font-black uppercase tracking-wide border-2 border-brand-green/30 w-fit">
                       {study.category}
                     </span>
-                    <span className="text-brand-gray-600 text-sm font-semibold">{study.duration}</span>
+                    <div className="text-left sm:text-right">
+                      <div className="text-xs font-bold text-brand-gray-600 uppercase tracking-wide mb-1">Duration</div>
+                      <div className="text-sm text-brand-navy font-black">{study.duration}</div>
+                    </div>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black text-brand-navy mb-3 leading-tight">{study.title}</h3>
-                  <p className="text-lg text-brand-navy-light font-semibold">{study.client}</p>
+
+                  {/* Title & Client */}
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-brand-navy mb-3 leading-tight group-hover:text-brand-green transition-colors">
+                    {study.title}
+                  </h3>
+                  <p className="text-base lg:text-lg text-brand-navy-light font-bold flex items-center gap-2">
+                    <span className="w-2 h-2 bg-brand-green rounded-full flex-shrink-0"></span>
+                    {study.client}
+                  </p>
                 </div>
 
-                {/* Metrics */}
-                <div className="p-8 bg-brand-gray-50">
-                  <div className="flex flex-wrap gap-3">
+                {/* Metrics Banner - Fixed Height */}
+                <div className="p-4 lg:p-6 bg-gradient-to-r from-brand-green/5 via-brand-green/10 to-brand-green/5 border-b-2 border-brand-gray-100">
+                  <div className="flex flex-wrap gap-2 lg:gap-3 justify-center">
                     {study.metrics.map((metric, i) => (
-                      <span key={i} className="px-4 py-2 bg-brand-green text-white rounded-lg text-sm font-bold shadow-sm">
+                      <div key={i} className="px-3 lg:px-4 py-2 lg:py-2.5 bg-brand-green text-white rounded-xl text-xs lg:text-sm font-black shadow-md md:hover:shadow-lg md:hover:scale-105 transition-all duration-200 cursor-default">
                         {metric}
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Challenge & Results Preview */}
-                <div className="p-8 space-y-6 bg-white">
+                {/* Challenge & Results Section - Flex Grow */}
+                <div className="p-6 lg:p-8 space-y-6 bg-white flex-grow flex flex-col">
+                  {/* Challenge */}
                   <div>
-                    <h4 className="text-xs font-bold text-brand-gray-600 uppercase mb-3 flex items-center gap-2 tracking-wide">
-                      <Target size={16} className="text-brand-green" />
-                      Challenge
+                    <h4 className="text-xs font-black text-brand-gray-600 uppercase mb-3 lg:mb-4 flex items-center gap-2 tracking-wide">
+                      <div className="w-6 h-6 bg-brand-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Target size={14} className="text-brand-green" />
+                      </div>
+                      The Challenge
                     </h4>
-                    <p className="text-brand-navy-light leading-relaxed line-clamp-3 font-medium">{study.challenge}</p>
+                    <p className="text-brand-navy-light leading-relaxed font-medium text-sm lg:text-base">
+                      {study.challenge}
+                    </p>
                   </div>
 
-                  <div>
-                    <h4 className="text-xs font-bold text-brand-gray-600 uppercase mb-3 flex items-center gap-2 tracking-wide">
-                      <CheckCircle2 size={16} className="text-brand-green" />
-                      Key Results
+                  {/* Results Section */}
+                  <div className="pt-6 border-t-2 border-brand-gray-100 flex-grow">
+                    <h4 className="text-xs font-black text-brand-gray-600 uppercase mb-3 lg:mb-4 flex items-center gap-2 tracking-wide">
+                      <div className="w-6 h-6 bg-brand-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <CheckCircle2 size={14} className="text-brand-green" />
+                      </div>
+                      Key Results Delivered
                     </h4>
-                    <ul className="space-y-3">
-                      {study.results.slice(0, 3).map((result, i) => (
-                        <li key={i} className="flex items-start gap-3 text-brand-navy-light font-medium">
-                          <ChevronRight size={18} className="text-brand-green flex-shrink-0 mt-0.5" />
+                    <ul className="space-y-2.5 lg:space-y-3">
+                      {study.results.map((result, i) => (
+                        <li key={i} className="flex items-start gap-2 lg:gap-3 text-brand-navy-light font-medium text-sm lg:text-base">
+                          <div className="mt-1 flex-shrink-0 w-5 h-5 bg-brand-green/10 rounded-md flex items-center justify-center">
+                            <ChevronRight size={14} className="text-brand-green" />
+                          </div>
                           <span>{result}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
+                  {/* View Project Link - Always at Bottom */}
                   {study.link && (
-                    <a
-                      href={study.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-gray-900 font-semibold group-hover:gap-3 transition-all border-t border-gray-200 pt-6 w-full"
-                    >
-                      <ExternalLink size={18} />
-                      View Live Project
-                    </a>
+                    <div className="pt-6 border-t-2 border-brand-gray-100 mt-auto">
+                      <a
+                        href={study.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-brand-navy hover:text-brand-green font-bold group/link transition-all text-sm lg:text-base"
+                      >
+                        <ExternalLink size={18} className="group-hover/link:scale-110 transition-transform flex-shrink-0" />
+                        <span>View Live Project</span>
+                        <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform flex-shrink-0" />
+                      </a>
+                    </div>
                   )}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="mt-16 text-center">
-            <p className="text-lg text-gray-600 mb-6">Ready to generate similar results for your business?</p>
-            <Link
-              href="https://calendly.com/kamooliphant/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-upwork-green to-emerald-600 text-white px-8 py-4 rounded-full hover:from-upwork-green-dark hover:to-emerald-700 transition-all hover:scale-105 text-lg font-medium shadow-lg hover:shadow-xl"
-            >
-              Schedule Free Strategy Call
-              <Calendar size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* How We Work Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy">How We Work Together</h2>
-            <p className="text-xl text-brand-gray-600 font-medium max-w-3xl mx-auto">A systematic process that delivers results without wasting your time</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Connection Line */}
-            <div className="hidden md:block absolute top-16 left-0 right-0 h-1 bg-brand-gray-200 -z-10"></div>
-
-            {[
-              {
-                step: "01",
-                title: "Discovery",
-                timeline: "Week 1",
-                description: "Deep-dive into your business, competitors, and target audience. Identify content gaps and opportunities.",
-                involvement: "2-3 hours total",
-                icon: Target
-              },
-              {
-                step: "02",
-                title: "Strategy",
-                timeline: "Week 2",
-                description: "Custom content roadmap with keyword targets, topic clusters, and success metrics. You approve before we build.",
-                involvement: "1 hour review",
-                icon: TrendingUp
-              },
-              {
-                step: "03",
-                title: "Execution",
-                timeline: "Week 3+",
-                description: "Systematic content creation, optimization, and publishing. Weekly progress updates, minimal input needed.",
-                involvement: "30 min/week",
-                icon: Zap
-              },
-              {
-                step: "04",
-                title: "Results",
-                timeline: "Month 2+",
-                description: "Traffic growth, lead generation, and market authority. Monthly reporting with actionable insights.",
-                involvement: "1 hour/month",
-                icon: BarChart3
-              }
-            ].map((phase, i) => {
-              const Icon = phase.icon;
-              return (
-                <div key={i} className="relative">
-                  <div className="bg-white rounded-2xl p-8 border-2 border-brand-gray-200 hover:border-brand-green hover:shadow-xl transition-all h-full">
-                    {/* Step Number Circle */}
-                    <div className="w-14 h-14 bg-brand-green rounded-full flex items-center justify-center mb-6 shadow-md">
-                      <span className="text-white font-black text-xl">{phase.step}</span>
-                    </div>
-
-                    {/* Icon */}
-                    <div className="mb-4">
-                      <Icon size={32} className="text-brand-navy" />
-                    </div>
-
-                    {/* Content */}
-                    <h3 className="text-2xl font-black text-brand-navy mb-2">{phase.title}</h3>
-                    <div className="text-sm font-bold text-brand-green mb-4 uppercase tracking-wide">{phase.timeline}</div>
-                    <p className="text-brand-navy-light leading-relaxed mb-4 font-medium">{phase.description}</p>
-
-                    {/* Involvement Badge */}
-                    <div className="inline-block px-4 py-2 bg-brand-gray-50 rounded-lg border border-brand-gray-200">
-                      <div className="text-xs font-bold text-brand-gray-600 uppercase tracking-wide mb-1">Your Time</div>
-                      <div className="text-sm font-black text-brand-navy">{phase.involvement}</div>
-                    </div>
+          {/* Stats Bar */}
+          <div className="mb-16 bg-white rounded-2xl p-8 md:p-12 border-2 border-brand-gray-200 shadow-lg">
+            <div className="grid md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: "80%+", label: "Client Retention", sublabel: "Long-term partnerships" },
+                { value: "1,067%", label: "Peak Growth", sublabel: "Traffic increase achieved" },
+                { value: "$40K+", label: "Revenue Generated", sublabel: "Qualified leads & opportunities" },
+                { value: "95%", label: "Job Success", sublabel: "Upwork verified rating" }
+              ].map((stat, i) => (
+                <div key={i} className="group cursor-default">
+                  <div className="text-5xl md:text-6xl font-black text-brand-navy mb-2 group-hover:text-brand-green transition-colors">
+                    {stat.value}
                   </div>
+                  <div className="text-base font-bold text-brand-navy-light mb-1">{stat.label}</div>
+                  <div className="text-sm text-brand-gray-600 font-medium">{stat.sublabel}</div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
 
-          {/* Bottom CTA */}
-          <div className="mt-16 text-center">
-            <p className="text-xl text-brand-navy-light font-semibold mb-6">
-              Ready to see this process in action for your business?
+          {/* CTA */}
+          <div className="text-center">
+            <p className="text-xl md:text-2xl text-brand-navy-light font-bold mb-6">
+              Ready to generate similar results for your business?
             </p>
             <Link
               href="https://calendly.com/kamooliphant/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-brand-green text-white px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all hover:scale-105 text-xl font-black shadow-xl hover:shadow-2xl"
+              className="group relative inline-flex items-center gap-3 bg-brand-green text-white px-12 py-6 rounded-full hover:bg-brand-green-dark transition-all hover:scale-105 text-xl md:text-2xl font-black shadow-xl hover:shadow-2xl glow-on-hover overflow-hidden"
             >
-              Schedule Strategy Call
-              <ArrowRight size={24} />
+              <span className="relative z-10">Schedule Free Strategy Call</span>
+              <Calendar size={24} className="relative z-10 group-hover:rotate-12 transition-transform" />
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
+            <p className="text-sm text-brand-gray-600 mt-4 font-medium">
+              30-minute call • No obligations • Get your custom growth roadmap
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work Section */}
+      <section className="py-20 px-6 bg-gradient-to-br from-white via-brand-gray-50/30 to-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Header with Value Proposition */}
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20 hover:scale-105 transition-transform cursor-default">
+                Our Proven System
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy leading-tight">
+              How We Work Together
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light max-w-3xl mx-auto font-semibold leading-relaxed mb-4">
+              A systematic process that delivers results without wasting your time
+            </p>
+            <p className="text-lg text-brand-gray-600 max-w-2xl mx-auto font-medium">
+              Minimal meetings. Maximum results. Most clients see measurable improvement by Month 3.
+            </p>
+          </div>
+
+          {/* Timeline Workflow */}
+          <div className="relative mb-16">
+            {/* Desktop Timeline Connector */}
+            <div className="hidden lg:block absolute top-24 left-[5%] right-[5%] h-1.5 bg-gradient-to-r from-brand-green via-brand-green to-brand-green opacity-20 -z-10"></div>
+            <div className="hidden lg:block absolute top-24 left-[5%] w-0 h-1.5 bg-gradient-to-r from-brand-green to-brand-green animate-pulse" style={{width: '90%'}}></div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {[
+                {
+                  step: "01",
+                  title: "Discovery & Strategy",
+                  timeline: "Week 1",
+                  description: "Deep dive into your business goals, competitive landscape, and target audience DNA. We identify content gaps and untapped opportunities.",
+                  deliverables: [
+                    "Competitive analysis report",
+                    "Custom content strategy",
+                    "Success metrics definition",
+                    "Keyword & topic roadmap"
+                  ],
+                  involvement: "2-3 hours total",
+                  icon: Target,
+                  color: "brand-green"
+                },
+                {
+                  step: "02",
+                  title: "Foundation Building",
+                  timeline: "Week 2-4",
+                  description: "We build your content infrastructure. Initial pieces go live, SEO foundations are set, and analytics tracking begins.",
+                  deliverables: [
+                    "Initial content creation",
+                    "SEO optimization",
+                    "Channel setup",
+                    "Analytics implementation"
+                  ],
+                  involvement: "1 hour/week",
+                  icon: TrendingUp,
+                  color: "brand-green"
+                },
+                {
+                  step: "03",
+                  title: "Execution & Growth",
+                  timeline: "Month 2+",
+                  description: "Consistent content delivery on autopilot. Weekly updates keep you informed. Your only job: approve and watch traffic grow.",
+                  deliverables: [
+                    "Consistent content delivery",
+                    "Performance monitoring",
+                    "Strategy optimization",
+                    "Weekly progress updates"
+                  ],
+                  involvement: "30 min/week",
+                  icon: Zap,
+                  color: "brand-green"
+                },
+                {
+                  step: "04",
+                  title: "Results & Scaling",
+                  timeline: "Month 3+",
+                  description: "Traffic compounds, leads flow in, and you dominate search results. Monthly reviews show ROI and identify scaling opportunities.",
+                  deliverables: [
+                    "Traffic & lead growth",
+                    "Monthly ROI reporting",
+                    "Scaling recommendations",
+                    "Market authority metrics"
+                  ],
+                  involvement: "1 hour/month",
+                  icon: BarChart3,
+                  color: "brand-green"
+                }
+              ].map((phase, i) => {
+                const Icon = phase.icon;
+                return (
+                  <div key={i} className="relative group">
+                    <div className="relative bg-white rounded-2xl p-6 lg:p-8 border-2 border-brand-gray-200 hover:border-brand-green hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                      {/* Progress Indicator Dot */}
+                      <div className="hidden lg:block absolute -top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-green rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform z-10"></div>
+
+                      {/* Step Number Badge */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="w-16 h-16 bg-gradient-to-br from-brand-green to-brand-green-dark rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <span className="text-white font-black text-2xl">{phase.step}</span>
+                        </div>
+                        <Icon size={36} className="text-brand-navy/20 group-hover:text-brand-green transition-colors" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="mb-4">
+                        <h3 className="text-2xl lg:text-3xl font-black text-brand-navy mb-2 leading-tight group-hover:text-brand-green transition-colors">
+                          {phase.title}
+                        </h3>
+                        <div className="inline-block px-3 py-1.5 bg-brand-green/10 text-brand-green rounded-lg text-sm font-black uppercase tracking-wide border border-brand-green/30">
+                          {phase.timeline}
+                        </div>
+                      </div>
+
+                      <p className="text-brand-navy-light leading-relaxed mb-6 font-medium flex-grow">
+                        {phase.description}
+                      </p>
+
+                      {/* Deliverables - Expandable Section */}
+                      <div className="mb-6 p-4 bg-brand-gray-50 rounded-xl border border-brand-gray-200">
+                        <h4 className="text-xs font-black text-brand-gray-600 uppercase mb-3 tracking-wide flex items-center gap-2">
+                          <CheckCircle2 size={14} className="text-brand-green" />
+                          What You Get
+                        </h4>
+                        <ul className="space-y-2">
+                          {phase.deliverables.map((deliverable, j) => (
+                            <li key={j} className="flex items-start gap-2 text-sm text-brand-navy-light font-medium">
+                              <ChevronRight size={16} className="text-brand-green flex-shrink-0 mt-0.5" />
+                              <span>{deliverable}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Time Commitment Badge */}
+                      <div className="mt-auto p-4 bg-white rounded-xl border-2 border-brand-green/20 group-hover:border-brand-green transition-colors">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="text-xs font-bold text-brand-gray-600 uppercase tracking-wide mb-1">Your Time Investment</div>
+                            <div className="text-lg font-black text-brand-navy">{phase.involvement}</div>
+                          </div>
+                          <div className="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center">
+                            <Calendar size={20} className="text-brand-green" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Results Timeline Expectation */}
+          <div className="mb-12 bg-gradient-to-r from-brand-green/5 via-brand-green/10 to-brand-green/5 rounded-2xl p-8 md:p-12 border-2 border-brand-green/20">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl md:text-5xl font-black text-brand-navy mb-4">
+                When You'll See Results
+              </h3>
+              <p className="text-lg text-brand-navy-light font-semibold max-w-2xl mx-auto">
+                Strategic content compounds over time. Here's the typical trajectory:
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  period: "Month 1",
+                  focus: "Foundation Phase",
+                  expectations: [
+                    "Content goes live",
+                    "SEO indexing begins",
+                    "Analytics tracking active",
+                    "Initial engagement data"
+                  ],
+                  indicator: "🌱",
+                  status: "Building"
+                },
+                {
+                  period: "Month 2-3",
+                  focus: "Traction Phase",
+                  expectations: [
+                    "Search rankings improve",
+                    "Traffic growth visible",
+                    "First qualified leads",
+                    "Performance patterns emerge"
+                  ],
+                  indicator: "📈",
+                  status: "Growing"
+                },
+                {
+                  period: "Month 4+",
+                  focus: "Scale Phase",
+                  expectations: [
+                    "Consistent lead flow",
+                    "Market authority established",
+                    "Compounding ROI",
+                    "Scaling opportunities clear"
+                  ],
+                  indicator: "🚀",
+                  status: "Dominating"
+                }
+              ].map((timeline, i) => (
+                <div key={i} className="bg-white rounded-xl p-6 border-2 border-brand-gray-200 hover:border-brand-green hover:shadow-lg transition-all">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <div className="text-xs font-bold text-brand-gray-600 uppercase tracking-wide">Timeline</div>
+                      <div className="text-2xl font-black text-brand-navy">{timeline.period}</div>
+                    </div>
+                    <div className="text-4xl">{timeline.indicator}</div>
+                  </div>
+
+                  <div className="mb-4">
+                    <div className="inline-block px-3 py-1.5 bg-brand-green/10 text-brand-green rounded-lg text-sm font-black uppercase">
+                      {timeline.status}
+                    </div>
+                  </div>
+
+                  <h4 className="text-lg font-black text-brand-navy mb-3">{timeline.focus}</h4>
+
+                  <ul className="space-y-2">
+                    {timeline.expectations.map((expectation, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm text-brand-navy-light font-medium">
+                        <CheckCircle2 size={16} className="text-brand-green flex-shrink-0 mt-0.5" />
+                        <span>{expectation}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Trust Reinforcement */}
+          <div className="bg-white rounded-2xl p-8 border-2 border-brand-gray-200 mb-12">
+            <div className="grid md:grid-cols-4 gap-6 text-center">
+              {[
+                { icon: Shield, label: "No Long-Term Contracts", sublabel: "Cancel anytime" },
+                { icon: Target, label: "100% On-Time Delivery", sublabel: "Every milestone met" },
+                { icon: Zap, label: "24hr Response Time", sublabel: "Always accessible" },
+                { icon: Award, label: "80%+ Client Retention", sublabel: "Results speak" }
+              ].map((trust, i) => {
+                const TrustIcon = trust.icon;
+                return (
+                  <div key={i} className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-brand-green/10 rounded-full flex items-center justify-center mb-3">
+                      <TrustIcon size={24} className="text-brand-green" />
+                    </div>
+                    <div className="font-black text-brand-navy mb-1">{trust.label}</div>
+                    <div className="text-sm text-brand-gray-600 font-medium">{trust.sublabel}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center">
+            <p className="text-xl md:text-2xl text-brand-navy-light font-bold mb-6">
+              Ready to start your content transformation?
+            </p>
+            <Link
+              href="https://calendly.com/kamooliphant/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-3 bg-brand-green text-white px-12 py-6 rounded-full hover:bg-brand-green-dark transition-all hover:scale-105 text-xl md:text-2xl font-black shadow-xl hover:shadow-2xl glow-on-hover overflow-hidden"
+            >
+              <span className="relative z-10">Schedule Free Strategy Call</span>
+              <ArrowRight size={28} className="relative z-10 group-hover:translate-x-2 transition-transform" />
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
+            <p className="text-sm text-brand-gray-600 mt-4 font-medium">
+              30-minute call • No obligations • Get a custom roadmap
+            </p>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="services" className="py-20 px-6 bg-white">
+      <section id="services" className="py-20 px-6 bg-gradient-to-br from-white via-brand-gray-50/30 to-white">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy">Transparent Pricing</h2>
-            <p className="text-xl md:text-2xl text-brand-gray-600 max-w-3xl mx-auto font-medium">No hidden fees, no surprises—just results.</p>
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20">
+                Investment Options
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy leading-tight">
+              Transparent Pricing
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light max-w-3xl mx-auto font-semibold leading-relaxed">
+              No hidden fees, no surprises—just results.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 items-center mb-16">
-            {pricingTiers.map((tier) => (
+            {pricingTiers.map((tier, index) => (
               <div
                 key={tier.id}
                 className={`relative bg-white rounded-2xl p-8 border-2 transition-all ${
@@ -481,11 +730,21 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-6 bg-brand-gray-50">
+      <section id="testimonials" className="py-20 px-6 bg-gradient-to-br from-brand-gray-50 via-white to-brand-gray-50">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy">What Clients Say</h2>
-            <p className="text-xl text-brand-gray-600 font-medium">Verified reviews from real projects • Top Rated Plus on Upwork</p>
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20">
+                Client Testimonials
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy leading-tight">
+              What Clients Say
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light font-semibold leading-relaxed max-w-3xl mx-auto">
+              Verified reviews from real projects • Top Rated Plus on Upwork
+            </p>
           </div>
 
           {/* Featured Testimonial */}
@@ -585,11 +844,19 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-white">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-br from-white via-brand-gray-50/30 to-white">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black text-brand-navy mb-6">Let's Start Growing</h2>
-            <p className="text-xl md:text-2xl text-brand-gray-600 max-w-3xl mx-auto font-medium">
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20">
+                Get In Touch
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-brand-navy mb-6 leading-tight">
+              Let's Start Growing
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light max-w-3xl mx-auto font-semibold leading-relaxed">
               Tell me about your business goals. I'll show you how strategic content marketing can get you there.
             </p>
           </div>
@@ -664,11 +931,21 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-gradient-to-br from-brand-gray-50 via-white to-brand-gray-50">
         <div className="max-w-4xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy">Common Questions</h2>
-            <p className="text-xl text-brand-gray-600 font-medium">Everything you need to know before we start</p>
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-full text-sm font-black uppercase tracking-wide border-2 border-brand-green/20">
+                FAQs
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-brand-navy leading-tight">
+              Common Questions
+            </h2>
+            <p className="text-xl md:text-2xl text-brand-navy-light font-semibold leading-relaxed">
+              Everything you need to know before we start
+            </p>
           </div>
 
           <div className="space-y-6">
